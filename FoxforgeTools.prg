@@ -12,8 +12,6 @@
 * demás (web, service, foxmenu) crean desde su formulario (NewProject); la
 * tool lo abre JUSTO DESPUÉS de contestar, como ide_menu_command, y lo dice:
 * no se inventa un camino sin diálogo que FoxForge no tenga.
-*
-* Superficie pública en inglés. Fichero en CP1252.
 *==================================================================
 
 #DEFINE FF_NO_HOST "FoxDock is not mounted (after CLEAR ALL it sleeps until a FoxDock menu bar or key is pressed)"

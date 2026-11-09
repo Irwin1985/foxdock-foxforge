@@ -20,9 +20,9 @@
 * (HKLM\SOFTWARE\irwinrodriguez.dev\FoxForge\InstallDir, el de su
 * instalador); si no, C:\Program Files (x86)\FoxForge; si no, ..\FoxForge\
 * desde la raíz de este repo (desarrollo). Sin FoxForge, el plugin carga igual
-* y su submenú tiene una sola barra, apagada: «FoxForge: not installed». La
-* suite pone FOXDOCK_FOXFORGE_FOLDER (detrás de la opción) para no cargar el
-* FoxForge de la máquina en los tests que no son de foxforge.
+* y su submenú tiene una sola barra, apagada: «FoxForge: not installed». Las
+* pruebas ponen FOXDOCK_FOXFORGE_FOLDER (detrás de la opción) para no cargar el
+* FoxForge de la máquina en las que no son de foxforge.
 *
 * Un FoxForge que no conoce el modo alojado (0.4.7 y anteriores) NO se
 * arranca: con "hosted" corre entero, pone su pad y solo después VFP da el
@@ -32,8 +32,6 @@
 *
 * nOrder 980: detrás de history (970), para no cambiar el orden de los menús
 * que van antes.
-*
-* Fichero en CP1252, con los acentos escritos.
 *==================================================================
 
 #DEFINE FF_HOSTED_MARK "FOXFORGE-HOSTED-MODE-1"
@@ -42,7 +40,7 @@ DEFINE CLASS FoxforgePlugin AS PluginBase
 	cId = "foxforge"
 	cTitle = "FoxForge"
 	nOrder = 970
-	cVersion = "0.1.0"
+	cVersion = "0.1.1"
 	lWantsIdle = .T.
 
 	cFolder = ""
@@ -142,14 +140,14 @@ DEFINE CLASS FoxforgePlugin AS PluginBase
 		This.cFolder = ""
 		lcDir = TRANSFORM(This.oHost.Options.Get(This.cId, "folder", ""))
 		This.cFolderFrom = "option foxforge.folder"
-		*-- La suite (suite.ps1) pone FOXDOCK_FOXFORGE_FOLDER para que los tests
+		*-- Las pruebas ponen FOXDOCK_FOXFORGE_FOLDER para que los tests
 		*-- que no son de foxforge no carguen el FoxForge de la máquina.
 		IF EMPTY(lcDir) AND !EMPTY(GETENV("FOXDOCK_FOXFORGE_FOLDER"))
 			lcDir = GETENV("FOXDOCK_FOXFORGE_FOLDER")
 			This.cFolderFrom = "FOXDOCK_FOXFORGE_FOLDER"
 		ENDIF
 		IF !EMPTY(lcDir)
-			*-- Si la opción está, manda aunque no exista (la suite la inventa).
+			*-- Si la opción está, manda aunque no exista (las pruebas la inventan).
 			This.cFolder = IIF(FILE(ADDBS(lcDir) + "FoxForge.APP"), ADDBS(lcDir), "")
 			RETURN
 		ENDIF
