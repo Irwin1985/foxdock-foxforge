@@ -1,0 +1,15 @@
+{
+  "name": "foxdock-foxforge",
+  "kind": "foxdock-plugin",
+  "id": "foxforge",
+  "foxdockApi": 1,
+  "version": "0.1.0",
+  "description": "Hosts FoxForge, the VFP project workshop, in the FoxDock menu",
+  "license": "MIT",
+  "files": [
+    "FoxforgePlugin.prg",
+    "FoxforgeStrings.prg",
+    "FoxforgeTools.prg"
+  ],
+  "requires": []
+}
